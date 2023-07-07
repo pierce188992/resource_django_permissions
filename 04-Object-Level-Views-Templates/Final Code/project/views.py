@@ -13,11 +13,11 @@ def index(request):
 
 
 @login_required
-@permission_required("project.view_project")
+@permission_required("project.view_project") #先用model權限設定
 def project_listing(request):
     project_data = get_objects_for_user(
         request.user, "project.dg_view_project", klass=Project
-    )
+    )#在用object權限 設定可以查看的特定object
     return render(request, "project.html", {"projects": project_data})
 
 
